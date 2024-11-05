@@ -95,4 +95,20 @@ class Person
     setFaceColor(color) {
         this.#faceColor = color;
     }
+
+    getX() {
+        return this.#x;
+    }
+
+    getY() {
+        return this.#y;
+    }
+
+    getScale() {
+        return this.#scale;
+    }
+
+    getRotation() {
+        return this.#rotation;
+    }
 }

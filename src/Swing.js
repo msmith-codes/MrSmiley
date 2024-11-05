@@ -57,10 +57,15 @@ class Swing
         ctx.fill();
         ctx.stroke();
     
+        // Calculate the seat position
+        const seatX = this.#x + 25 - 105 * Math.sin(angle);
+        // const seatY = this.#y - 50 + 105 * Math.cos(angle) - (Math.sin(this.#y - Math.PI / 2) + 1);           
+        const seatY = (this.#y + 60) + (Math.sin(this.#y - Math.PI / 2) + 1); 
+
         // draw the person on the seat
         ctx.save();
-        ctx.translate(5, 50); // Position the person on the seat
-        // ctx.rotate(-angle); // Counteract the swing's rotation to keep the person vertical
+        this.#person.setPosition((seatX - this.#x) / Math.PI - 10, (seatY - this.#y) / Math.PI + 35); // Position the person on the seat
+        this.#person.setRotation(-angle / 2); // Rotate the person in the opposite direction
         this.#person.draw(ctx);
         ctx.restore();
 

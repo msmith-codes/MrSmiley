@@ -20,21 +20,19 @@ class Star
         ctx.fillStyle = "yellow";
 
         ctx.beginPath();
+
         for (let i = 0; i < this.#points * 2; i++) {
-            const angle = i * Math.PI / this.#points;
+            const angle = i * Math.PI / this.#points + (starTime / 10);
             const radius = i % 2 === 0 ? this.#outerRadius : this.#innerRadius;
             const x = this.#x + radius * Math.cos(angle);
             const y = this.#y + radius * Math.sin(angle);
             ctx.lineTo(x, y);
         }
 
-        // spin the stars
         ctx.save();
         ctx.translate(this.#x, this.#y);
         this.twinkle(starTime);
-        ctx.rotate(starTime);
         ctx.translate(-this.#x, -this.#y);
-
         ctx.closePath();
         ctx.fill();
 
@@ -47,6 +45,5 @@ class Star
         const scale = 0.5 + Math.sin(starTime) * 0.1;
         this.#outerRadius = 10 * scale;
         this.#innerRadius = 5 * scale;
-
     }
 }

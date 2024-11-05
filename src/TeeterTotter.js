@@ -18,7 +18,7 @@ class TeeterTotter {
         this.#person2.setScale(0.5);
     }
 
-    draw(angle) {
+    draw(angle, offset) {
         const ctx = this.#theCanvas.getContext("2d");
         ctx.fillStyle = "blue";
 
@@ -40,17 +40,16 @@ class TeeterTotter {
 
         // Draw person1 at the left end of the teeter-totter
         ctx.save();
-        ctx.translate(10, -20); // Adjust position to the left end of the platform
-        // ctx.rotate(-angle); // Counteract the rotation to keep the person vertical
-        // ctx.translate(0, -100); // Adjust vertical position to sit on the platform
+        ctx.translate(20, -20); // Adjust position to the left end of the platform
+        this.#person1.setRotation(-angle); // Rotate the person in the opposite direction
         this.#person1.draw(ctx);
         ctx.restore();
 
         // Draw person2 at the right end of the teeter-totter
         ctx.save();
-        ctx.translate(-10, -20); // Adjust position to the right end of the platform
-        // ctx.rotate(-angle); // Counteract the rotation to keep the person vertical
-        // ctx.translate(0, -100); // Adjust vertical position to sit on the platform
+        ctx.translate(-20, -20); // Adjust position to the right end of the platform
+        this.#person2.setRotation(-angle); // Rotate the person in the opposite
+    
         this.#person2.draw(ctx);
         ctx.restore();
 
